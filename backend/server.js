@@ -1,6 +1,7 @@
 const express=require('express');
 const app=express();
 const dns=require('dns');
+app.use(express.json());
 dns.setServers(['1.1.1.1','8.8.8.8']);
 
 const connectDb=require('./src/config/db');
