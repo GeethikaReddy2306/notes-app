@@ -2,8 +2,8 @@ const express=require('express');
 const app=express();
 const dns=require('dns');
 const cors=require('cors');
-const path=require('paths');
-
+const path=require('path');
+require('dotenv').config();
 const __dirname=path.resolve()
 app.use(express.json());
 app.use(cors({
