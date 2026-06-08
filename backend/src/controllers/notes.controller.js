@@ -40,30 +40,30 @@ async function getNotesbyId(req,res){
 
   }
 }
-async function deleteNotes(req,res){
-  
-  
-  try{
-    const {id}=req.params;
+async function deleteNotes(req, res) {
+  try {
+    const { id } = req.params;
+
+    const deletedNote = await notes.findByIdAndDelete(id);
+
     if (!deletedNote) {
-  return res.status(404).json({
-    message: "Note not found"
-  });
-}
-  await notes.findByIdAndDelete(id);
-  res.status(200).json({
-    message:"deleted successfully"
-  })
-}
-  catch(err){
+      return res.status(404).json({
+        message: "Note not found",
+      });
+    }
+
+    res.status(200).json({
+      message: "Deleted successfully",
+      data: deletedNote,
+    });
+  } catch (err) {
     console.log(err);
-    
-    res.status(500).json({ message: "Internal server error" });
- 
 
-
+    res.status(500).json({
+      message: "Internal server error",
+    });
   }
-  }
+}
 
 async function updateNotes(req, res) {
   try {

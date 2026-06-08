@@ -1,11 +1,34 @@
 import { StickyNotePlus } from 'lucide-react';
-import {Link} from "react-router";
+import { NavLink } from 'react-router-dom';
+import './Navbar.css';
+
 export default function Navbar() {
   return (
-    <div>
-     <h1>NexNote</h1>
-    
-     <Link to="/Create">  <StickyNotePlus />Create Note</Link>
-    </div>
-  )
+    <header className="navbar">
+      <div className="navbar__brand">
+        <StickyNotePlus />
+        <span>NexNote</span>
+      </div>
+
+      <nav className="navbar__links">
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? 'navbar__link navbar__link--active' : 'navbar__link'
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/create"
+          className={({ isActive }) =>
+            isActive ? 'navbar__link navbar__link--active' : 'navbar__link'
+          }
+        >
+          Create
+        </NavLink>
+      </nav>
+    </header>
+  );
 }
