@@ -1,8 +1,12 @@
 const express=require('express');
 const app=express();
 const dns=require('dns');
+const cors=require('cors');
 //middleware
 app.use(express.json());
+app.use(cors({
+        origin: "http://localhost:5173"
+}));
 dns.setServers(['1.1.1.1','8.8.8.8']);
 const connectDb=require('./src/config/db');
 const router=require('./src/routes/notes.routes');
